@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1743691612 source:c:\users\admin\onedrive\desktop\ltnc\spaceinvaders\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+	"defs.h"
+	"game.h"
+
+1743686827 c:\users\admin\onedrive\desktop\ltnc\spaceinvaders\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	<vector>
+
+1743686827 c:\users\admin\onedrive\desktop\ltnc\spaceinvaders\defs.h
+
+1744654533 source:c:\users\admin\onedrive\documents\tronglinh\laptrinh\spaceinvaders\main.cpp
+	<iostream>
+	<sstream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+	"graphics.h"
+	"defs.h"
+	"game.h"
+
+1744654533 c:\users\admin\onedrive\documents\tronglinh\laptrinh\spaceinvaders\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<vector>
+	<string>
+	"defs.h"
+
+1744088112 c:\users\admin\onedrive\documents\tronglinh\laptrinh\spaceinvaders\defs.h
+
+1744797422 c:\users\admin\onedrive\documents\tronglinh\laptrinh\spaceinvaders\game.h
+	<vector>
+	<algorithm>
+	<cstdlib>
+
+1743691660 c:\users\admin\onedrive\desktop\ltnc\spaceinvaders\game.h
+	<vector>
+	<algorithm>
+	<cstdlib>
+
