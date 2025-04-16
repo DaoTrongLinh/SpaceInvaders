@@ -16,8 +16,8 @@ struct Bullet {
     SDL_Texture* texture;
 
     Bullet(int startX, int startY, int dir, SDL_Texture* tex) {
-        x = startX + 80; //Vị trí đạn spawn-phải cộng 80 pixel để trông như đang bắn ra từ mỏ con chim
-        y = startY + 10; //Vị trí đạn spawn
+        x = startX; //Vị trí đạn spawn-phải cộng 80 pixel để trông như đang bắn ra từ mỏ con chim
+        y = startY; //Vị trí đạn spawn
         direction=dir;
         texture = tex;
     }
