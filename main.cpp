@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     Game game;
 
     //Font chữ cho hiển thị điểm số, game over, start,... ra màn hình
-    TTF_Font* font = graphics.loadFont("Purisa-BoldOblique.ttf", 30);
+    TTF_Font* font = graphics.loadFont("Pixel Game.otf", 50);
     SDL_Color color = {255, 255, 0, 255};
 
     //Game loop
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
     graphics.renderTexture(finalScoreText, cx - sw / 2, gy + gh + 10);
     graphics.presentScene();
 
-    SDL_Delay(3000);  //Giữ lại màn hình 3 giây
+    SDL_Delay(3000); //Giữ lại màn hình 3 giây
 
     SDL_DestroyTexture(gameOverText);
     SDL_DestroyTexture(finalScoreText);
