@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     //Tải nhạc
     Mix_Music *gMusic = graphics.loadMusic("Pufino - Enjoy.mp3");
     graphics.play(gMusic);
-    Mix_Chunk *gJump = graphics.loadSound("whoos.mp3");
+    Mix_Chunk *gJump = graphics.loadSound("whoosh.mp3");
 
     //Nền cuộn
     ScrollingBackground background;
