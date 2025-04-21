@@ -16,8 +16,13 @@ struct Bullet {
     SDL_Texture* texture;
 
     Bullet(int startX, int startY, int dir, SDL_Texture* tex) {
+<<<<<<< HEAD
         x = startX + 85; //Vị trí đạn spawn-phải cộng 80 pixel để trông như đang bắn ra từ mỏ con chim
         y = startY + 25; //Vị trí đạn spawn
+=======
+        x = startX + 80; //Vị trí đạn spawn-phải cộng 80 pixel để trông như đang bắn ra từ mỏ con chim
+        y = startY + 30; //Vị trí đạn spawn
+>>>>>>> 6c2c7d96a95d1895a6d3fa6875119c5764f76ee0
         direction=dir;
         texture = tex;
     }
@@ -35,7 +40,7 @@ struct Mouse {
     int huong=1;
     vector<Bullet> bullets;
     unsigned int LanBanCuoi=0;
-    const unsigned int ShotCoolDown=300 ; //Khoảng thời gian phải chờ giữa 2 lần bắn (ms)
+    const unsigned int ShotCoolDown=300; //Khoảng thời gian phải chờ giữa 2 lần bắn (ms)
 
     //Render đạn
     void shoot(SDL_Texture* bulletTexture) {
