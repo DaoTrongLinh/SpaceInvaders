@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     //Tải nhạc
     Mix_Music *gMusic = graphics.loadMusic("Pufino - Enjoy.mp3");
     graphics.play(gMusic);
-    Mix_Chunk *gJump = graphics.loadSound("whoosh.mp3");
+    //Mix_Chunk *gJump = graphics.loadSound("whoosh.mp3");
 
     //Nền cuộn
     ScrollingBackground background;
@@ -35,13 +35,13 @@ int main(int argc, char *argv[])
     SDL_Texture* characterTexture = graphics.loadTexture(CHARACTER_SPRITE_FILE);
     character.init(characterTexture, CHARACTER_FRAMES, CHARACTER_CLIPS);
 
-    //Nhiều kẻ thù
+    //Kẻ thù
     SDL_Texture* enemyTexture = graphics.loadTexture("enemy.png");
     vector<Enemy> enemies;
 
     //Ảnh đạn
     SDL_Texture* bulletTexture = graphics.loadTexture("bullet.png");
-    //Không khai báo vector<Bullet> bullets vì bullets sẽ được gọi trong mouse
+    //Không khai báo vector<Bullet> bullets vì bullets sẽ được gọi trong struct Mouse
 
     //Logic game: vẽ nhân vật, kẻ thù, điểm số, va chạm,...
     Game game;
@@ -50,17 +50,19 @@ int main(int argc, char *argv[])
     TTF_Font* font = graphics.loadFont("Pixel Game.otf", 50);
     SDL_Color color = {255, 255, 0, 255};
 
+    //Phần mở đầu
     SDL_Texture* startText = graphics.renderText("Press SPACE to start", font, color);
     int tw, th;
     SDL_QueryTexture(startText, NULL, NULL, &tw, &th);
+    //Căn chỉnh dòng
     int tx = (SCREEN_WIDTH - tw) / 2;
-    int ty = (SCREEN_HEIGHT - th) / 2;
+    int ty = ((SCREEN_HEIGHT - th) / 2) - 10;
 
+    bool startGame = false;
     bool quit = false;
     SDL_Event e;
     SDL_Event event;
 
-    bool startGame = false;
     while (!startGame && !quit) {
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT) {
@@ -70,15 +72,14 @@ int main(int argc, char *argv[])
             }
         }
 
-        // Vẽ nền và dòng chữ
+        //Vẽ nền và dòng chữ
         graphics.prepareScene();
-        background.scroll(1); // Cho nền vẫn cuộn
+        background.scroll(1); //Nền cuộn
         graphics.render(background);
         graphics.renderTexture(startText, tx, ty);
         graphics.presentScene();
-        SDL_Delay(16); // ~60 FPS
+        SDL_Delay(16);
     }
-
     SDL_DestroyTexture(startText);
 
 
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
         mouse.turn_South();
         if (currentKeyStates[SDL_SCANCODE_UP]) mouse.turnNorth();
         if (currentKeyStates[SDL_SCANCODE_DOWN]) mouse.turnSouth();
-        if (currentKeyStates[SDL_SCANCODE_UP]) graphics.play(gJump); //Mỗi khi nhấn phím thì tạo tiếng
+        //if (currentKeyStates[SDL_SCANCODE_UP]) graphics.play(gJump); //Mỗi khi nhấn phím thì tạo tiếng
         if (currentKeyStates[SDL_SCANCODE_SPACE]) mouse.shoot(bulletTexture); //Bắn ra đạn
         mouse.updateBullets();
 
@@ -135,12 +136,13 @@ int main(int argc, char *argv[])
         graphics.renderScore(game.score, font, color, 10, 10); //Vị trí hiển thị điểm số góc trái trên
 
         graphics.presentScene();
-        SDL_Delay(14);
+        SDL_Delay(16);
     }
 
     if (gMusic != nullptr) Mix_FreeMusic( gMusic );
-    if (gJump != nullptr) Mix_FreeChunk( gJump);
+    //if (gJump != nullptr) Mix_FreeChunk( gJump);
 
+    //Phần kết thúc
     if (gameOver(mouse, enemies, game)) {
     //Dòng "Game Over!"
     SDL_Color red = {255, 0, 0, 255};

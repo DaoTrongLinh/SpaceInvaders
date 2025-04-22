@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//Background trôi
 struct ScrollingBackground {
     SDL_Texture* texture;
     int scrollingOffset = 0;
@@ -26,6 +27,7 @@ struct ScrollingBackground {
     }
 };
 
+//Nhân vật động
 struct Sprite {
     SDL_Texture* texture;
     vector<SDL_Rect> clips;
