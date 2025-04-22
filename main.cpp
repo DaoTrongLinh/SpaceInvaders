@@ -55,13 +55,12 @@ int main(int argc, char *argv[])
     int tw, th;
     SDL_QueryTexture(startText, NULL, NULL, &tw, &th);
     //Căn chỉnh dòng
-    int tx = (SCREEN_WIDTH - tw) / 2;
+    int tx = (SCREEN_WIDTH - tw) / 2 ;
     int ty = ((SCREEN_HEIGHT - th) / 2) - 10;
 
     bool startGame = false;
     bool quit = false;
     SDL_Event e;
-    SDL_Event event;
 
     while (!startGame && !quit) {
         while (SDL_PollEvent(&e)) {
@@ -86,7 +85,7 @@ int main(int argc, char *argv[])
     //Game loop
     while( !quit && !gameOver(mouse, enemies, game)) {
         while( SDL_PollEvent(&e) ) {
-            if( e.type == SDL_QUIT && event.type == SDL_QUIT ) quit = true;
+            if(e.type == SDL_QUIT) quit = true;
         }
 
         //Render background
@@ -129,7 +128,7 @@ int main(int argc, char *argv[])
         //Render nhân vật
         character.tick();
         mouse.move();
-        render(mouse, graphics);
+        //render(mouse, graphics); //Render ô vuông xanh lá nhỏ nằm ở dưới ảnh sprite của nhân vật
         graphics.renderCharacter(mouse.x-76, mouse.y-67 , character);
 
         //Hiển thị điểm số
