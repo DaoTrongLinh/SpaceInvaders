@@ -28,7 +28,7 @@ struct Bullet {
     }
 
     void renderBullet(Graphics& graphics){
-        SDL_Rect dest = {x, y, 20, 20};
+        SDL_Rect dest = {x, y, 20, 15};
         SDL_RenderCopy(graphics.renderer,texture, NULL, &dest);
     }
 };
