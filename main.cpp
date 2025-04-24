@@ -108,6 +108,8 @@ int main(int argc, char *argv[])
 
         //Kiểm tra va chạm giữa đạn và kẻ thù
         for (auto& bullet : mouse.bullets) {
+            //Render đạn
+            bullet.renderBullet(graphics);
             for (auto& enemy : enemies) {
                 if (game.checkBulletEnemyCollision(bullet, enemy)) {
                     break;  //Nếu đạn va chạm, không cần kiểm tra các kẻ thù khác
@@ -122,7 +124,7 @@ int main(int argc, char *argv[])
             }
             //Render kẻ thù
             enemy.move();
-            enemy.render(graphics);
+            enemy.renderEnemy(graphics);
         }
 
         //Render nhân vật

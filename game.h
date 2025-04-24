@@ -26,6 +26,11 @@ struct Bullet {
         x += speed*direction;
         if (x < 0|| x > SCREEN_WIDTH) active = false;
     }
+
+    void renderBullet(Graphics& graphics){
+        SDL_Rect dest = {x, y, 20, 20};
+        SDL_RenderCopy(graphics.renderer,texture, NULL, &dest);
+    }
 };
 
 struct Mouse {
@@ -90,7 +95,7 @@ struct Enemy {
     }
 
     //Render kẻ thù
-    void render(Graphics& graphics) {
+    void renderEnemy(Graphics& graphics) {
         SDL_Rect dest = {x, y, 50, 50}; //Kích thước 50x50
         SDL_RenderCopy(graphics.renderer, texture, NULL, &dest);
     }
