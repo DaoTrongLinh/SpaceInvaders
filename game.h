@@ -17,7 +17,7 @@ struct Bullet {
 
     Bullet(int startX, int startY, int dir, SDL_Texture* tex) {
         x = startX + 80; //Vị trí đạn spawn-phải cộng 80 pixel để trông như đang bắn ra từ mỏ con chim
-        y = startY + 30; //Vị trí đạn spaw
+        y = startY + 30; //Vị trí đạn spawn
         direction=dir;
         texture = tex; //Đè ảnh đạn lên đạn
     }
@@ -75,7 +75,7 @@ struct Mouse {
         dx = speed;
     }
     void turn_South() { //Trọng lực
-        dy = speed-1.5            ;
+        dy = speed-1.5;
         dx = 0;
     }
 };

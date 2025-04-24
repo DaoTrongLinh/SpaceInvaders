@@ -97,8 +97,8 @@ int main(int argc, char *argv[])
         mouse.turn_South();
         if (currentKeyStates[SDL_SCANCODE_UP]) mouse.turnNorth();
         if (currentKeyStates[SDL_SCANCODE_DOWN]) mouse.turnSouth();
-        //if (currentKeyStates[SDL_SCANCODE_UP]) graphics.play(gJump); //Mỗi khi nhấn phím thì tạo tiếng
         if (currentKeyStates[SDL_SCANCODE_SPACE]) mouse.shoot(bulletTexture); //Bắn ra đạn
+        //if (currentKeyStates[SDL_SCANCODE_UP]) graphics.play(gJump); //Mỗi khi nhấn phím thì tạo tiếng
         mouse.updateBullets();
 
         //Tạo thêm kẻ thù ngẫu nhiên
