@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     bool startGame = false;
     bool quit = false;
     SDL_Event e;
+    SDL_Event event;
 
     while (!startGame && !quit) {
         while (SDL_PollEvent(&e)) {
@@ -85,7 +86,7 @@ int main(int argc, char *argv[])
     //Game loop
     while( !quit && !gameOver(mouse, enemies, game)) {
         while( SDL_PollEvent(&e) ) {
-            if(e.type == SDL_QUIT) quit = true;
+            if(e.type == SDL_QUIT && event.type == SDL_QUIT) quit = true;
         }
 
         //Render background
