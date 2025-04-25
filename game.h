@@ -27,6 +27,7 @@ struct Bullet {
         if (x < 0|| x > SCREEN_WIDTH) active = false;
     }
 
+    //Render đạn
     void renderBullet(Graphics& graphics){
         SDL_Rect dest = {x, y, 20, 15};
         SDL_RenderCopy(graphics.renderer,texture, NULL, &dest);
@@ -42,7 +43,6 @@ struct Mouse {
     unsigned int LanBanCuoi=0;
     const unsigned int ShotCoolDown=300; //Khoảng thời gian phải chờ giữa các lần bắn (ms)
 
-    //Render đạn
     void shoot(SDL_Texture* bulletTexture) {
         //Delay sau mỗi lần bắn ra 1 viên đạn
         unsigned int currentTime = SDL_GetTicks(); //Lấy thời gian(số ms trôi qua kể từ khi bắt đầu chạy chương trình)
@@ -136,15 +136,15 @@ struct Game {
 
 
 void render(const Mouse& mouse, const Graphics& graphics) {
-    SDL_Rect filled_rect;
-    filled_rect.x = mouse.x;
-    filled_rect.y = mouse.y;
-    filled_rect.w = 0;
-    filled_rect.h = 0;
-    SDL_SetRenderDrawColor(graphics.renderer, 0, 255, 0, 255);
-    SDL_RenderFillRect(graphics.renderer, &filled_rect);
-
+    //SDL_Rect filled_rect;
+    //filled_rect.x = mouse.x;
+    //filled_rect.y = mouse.y;
+    //filled_rect.w = 0;
+    //filled_rect.h = 0;
+    //SDL_SetRenderDrawColor(graphics.renderer, 0, 255, 0, 255);
+    //SDL_RenderFillRect(graphics.renderer, &filled_rect);
     //SDL_SetRenderDrawColor(graphics.renderer, 255, 0, 0, 255); //Đạn màu đỏ (dòng này cần khi không có ảnh đạn để đè lên thì sẽ render là ô chữ nhật màu đỏ)
+
     for (const auto& bullet : mouse.bullets) {
         SDL_Rect bullet_rect = {bullet.x, bullet.y, 20, 20}; //Kích thước đạn
         SDL_RenderCopy(graphics.renderer, bullet.texture, NULL, &bullet_rect);
