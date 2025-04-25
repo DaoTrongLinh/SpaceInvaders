@@ -61,7 +61,6 @@ int main(int argc, char *argv[])
     bool startGame = false;
     bool quit = false;
     SDL_Event e;
-    SDL_Event event;
 
     while (!startGame && !quit) {
         while (SDL_PollEvent(&e)) {
@@ -86,7 +85,9 @@ int main(int argc, char *argv[])
     //Game loop
     while( !quit && !gameOver(mouse, enemies, game)) {
         while( SDL_PollEvent(&e) ) {
-            if(e.type == SDL_QUIT && event.type == SDL_QUIT) quit = true;
+            if(e.type == SDL_QUIT){
+                quit = true;
+            }
         }
 
         //Render background
@@ -109,8 +110,7 @@ int main(int argc, char *argv[])
 
         //Kiểm tra va chạm giữa đạn và kẻ thù
         for (auto& bullet : mouse.bullets) {
-            //Render đạn
-            bullet.renderBullet(graphics);
+            bullet.renderBullet(graphics); //Render đạn
             for (auto& enemy : enemies) {
                 if (game.checkBulletEnemyCollision(bullet, enemy)) {
                     break;  //Nếu đạn va chạm, không cần kiểm tra các kẻ thù khác
@@ -129,8 +129,8 @@ int main(int argc, char *argv[])
         }
 
         //Render nhân vật
-        character.tick();
         mouse.move();
+        character.tick();
         //render(mouse, graphics); //Render ô vuông xanh lá nhỏ nằm ở dưới ảnh sprite của nhân vật
         graphics.renderCharacter(mouse.x-76, mouse.y-67 , character);
 
@@ -141,44 +141,48 @@ int main(int argc, char *argv[])
         SDL_Delay(16);
     }
 
-    if (gMusic != nullptr) Mix_FreeMusic( gMusic );
-    //if (gJump != nullptr) Mix_FreeChunk( gJump);
-
-    //Phần kết thúc
     if (gameOver(mouse, enemies, game)) {
-    //Dòng "Game Over!"
-    SDL_Color red = {255, 0, 0, 255};
-    SDL_Texture* gameOverText = graphics.renderText("Game Over!", font, red);
+            //Dòng "Game Over!"
+            SDL_Color red = {255, 0, 0, 255};
+            SDL_Texture* gameOverText = graphics.renderText("Game Over!", font, red);
+            SDL_Texture* restartText = graphics.renderText("Press SPACE to restart", font, red);
 
-    //Dòng điểm số
-    stringstream s;
-    s <<"Your score: "<< game.score;
-    string Score = s.str();
-    SDL_Texture* finalScoreText = graphics.renderText(Score.c_str(), font, red); //Phải thêm c_str() vì nó là const char*
+            //Dòng điểm số
+            stringstream s;
+            s <<"Your score: "<< game.score;
+            string Score = s.str();
+            SDL_Texture* finalScoreText = graphics.renderText(Score.c_str(), font, red); //Phải thêm c_str() vì nó là const char*
 
-    //Kích thước của từng dòng text
-    int gw, gh, sw, sh;
-    SDL_QueryTexture(gameOverText, NULL, NULL, &gw, &gh);
-    SDL_QueryTexture(finalScoreText, NULL, NULL, &sw, &sh);
+            //Kích thước của từng dòng text
+            int gw, gh, sw, sh, rw, rh;
+            SDL_QueryTexture(gameOverText, NULL, NULL, &gw, &gh);
+            SDL_QueryTexture(finalScoreText, NULL, NULL, &sw, &sh);
+            SDL_QueryTexture(restartText, NULL, NULL, &rw, &rh);
 
-    //Căn giữa cả hai dòng, dòng thứ hai nằm dưới dòng đầu 10 pixel
-    int cx = SCREEN_WIDTH / 2;
-    int gy = (SCREEN_HEIGHT - gh - sh - 10) / 2;
+            //Căn giữa các dòng, các dòng cách nhau một khoảng pixel
+            int cx = SCREEN_WIDTH / 2;
+            int gy = (SCREEN_HEIGHT / 2)-70;
+            int sy = (SCREEN_HEIGHT / 2)+gh-70;
+            int ry = (SCREEN_HEIGHT / 2)+sh+gh-70;
 
-    //Dòng Game Over với nền là background game
-    graphics.prepareScene();
-    graphics.render(background);
+            //Dòng Game Over với nền là background game
+            graphics.prepareScene();
+            graphics.render(background);
 
-    //Render dòng "Game over" và dòng điểm số
-    graphics.renderTexture(gameOverText, cx - gw / 2, gy);
-    graphics.renderTexture(finalScoreText, cx - sw / 2, gy + gh + 10);
-    graphics.presentScene();
+            //Render dòng "Game over", dòng điểm số và restartText
+            graphics.renderTexture(gameOverText, cx - gw / 2, gy);
+            graphics.renderTexture(finalScoreText, cx - sw / 2, sy);
+            graphics.renderTexture(restartText, cx - rw / 2, ry);
+            graphics.presentScene();
 
-    SDL_Delay(3000); //Giữ lại màn hình 3 giây
+            SDL_Delay(3000);
 
-    SDL_DestroyTexture(gameOverText);
-    SDL_DestroyTexture(finalScoreText);
-}
+            SDL_DestroyTexture(gameOverText);
+            SDL_DestroyTexture(finalScoreText);
+            SDL_DestroyTexture(restartText);
+            if (gMusic != nullptr) Mix_FreeMusic( gMusic );
+            //if (gJump != nullptr) Mix_FreeChunk( gJump);
+        }
 
     SDL_DestroyTexture(characterTexture);
     SDL_DestroyTexture(enemyTexture);
