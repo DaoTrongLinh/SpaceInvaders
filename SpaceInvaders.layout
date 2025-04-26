@@ -19,7 +19,21 @@
 	</File>
 	<File name="graphics.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="3933" topLine="0" />
+=======
+			<Cursor1 position="6291" topLine="143" />
+		</Cursor>
+	</File>
+	<File name="graphics.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3933" topLine="171" />
+		</Cursor>
+	</File>
+	<File name="game.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="956" topLine="113" />
+>>>>>>> 4250841c7dd09e148d70b28ea07ce540e847db51
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
