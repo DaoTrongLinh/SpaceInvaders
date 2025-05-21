@@ -1,3 +1,3 @@
 # SpaceInvaders
-# Video Demo Game:
+Video Demo Game:
 https://youtu.be/T0fyKRTuJis
