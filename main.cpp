@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         SDL_QueryTexture(startText, NULL, NULL, &tw, &th);
         //Căn chỉnh dòng
         int tx = (SCREEN_WIDTH - tw) / 2 ;
-        int ty = ((SCREEN_HEIGHT - th) / 2) - 10;
+        int ty = ((SCREEN_HEIGHT - th) / 2);
 
         while (!startGame && !quit) {
             while (SDL_PollEvent(&e)) {
